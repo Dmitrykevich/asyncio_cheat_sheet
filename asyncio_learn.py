@@ -305,7 +305,30 @@ task. Затем мы приостанавливаем main(), что позво
 ########################################################################################################################
 
 """
-
+В этом примере цикл будет автоматически ожидать каждого ожидаемого объекта, возвращаемого генератором, извлекать 
+полученное значение и делать его доступным в теле цикла, чтобы в этом случае о нем можно было сообщить.
 """
 
+# # example of asynchronous generator with async for loop
+#
+#
+# # define an asynchronous generator
+# async def async_generator():
+#     # normal loop
+#     for i in range(10):
+#         # block to simulate doing work
+#         await asyncio.sleep(1)
+#         # yield the result
+#         yield i
+#
+#
+# # main coroutine
+# async def main():
+#     # loop over async generator with async for loop
+#     async for item in async_generator():
+#         print(item)
+#
+#
+# # execute the asyncio program
+# asyncio.run(main())
 ########################################################################################################################
