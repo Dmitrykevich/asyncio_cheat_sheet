@@ -332,3 +332,42 @@ task. Затем мы приостанавливаем main(), что позво
 # # execute the asyncio program
 # asyncio.run(main())
 ########################################################################################################################
+
+
+"""
+В этом примере наша корутина main() при запуске создаёт экземпляр класса AsyncContextManager в выражении async with.
+Это выражение автоматически вызывает метод __aenter__, выводит сообщение и блокируется на мгновение, тогда main()
+возобновляется и выполныет тело контекста (печать сообщения). Блок закрываетя автоматически при помощи вызова метода 
+__aexit__, который сообщает нам о закрытии и заспыает на мгновение. 
+"""
+
+
+# example of an asynchronous context manager via async with
+# define an asynchronous context manager
+class AsyncContextManager:
+    # enter the async context manager
+    async def __aenter__(self):
+        # report a message
+        print('>entering the context manager')
+        # block for a moment
+        await asyncio.sleep(0.5)
+
+    # exit the async context manager
+    async def __aexit__(self, exc_type, exc, tb):
+        # report a message
+        print('>exiting the context manager')
+        # block for a moment
+        await asyncio.sleep(0.5)
+
+
+# define a simple coroutine
+async def main():
+    # create and use the asynchronous context manager
+    async with AsyncContextManager() as manager:
+        # report the result
+        print(f'within the manager')
+
+
+# start the asyncio program
+asyncio.run(main())
+########################################################################################################################
