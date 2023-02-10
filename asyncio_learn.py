@@ -342,32 +342,54 @@ __aexit__, который сообщает нам о закрытии и зас�
 """
 
 
-# example of an asynchronous context manager via async with
-# define an asynchronous context manager
-class AsyncContextManager:
-    # enter the async context manager
-    async def __aenter__(self):
-        # report a message
-        print('>entering the context manager')
-        # block for a moment
-        await asyncio.sleep(0.5)
+# # example of an asynchronous context manager via async with
+# # define an asynchronous context manager
+# class AsyncContextManager:
+#     # enter the async context manager
+#     async def __aenter__(self):
+#         # report a message
+#         print('>entering the context manager')
+#         # block for a moment
+#         await asyncio.sleep(0.5)
+#
+#     # exit the async context manager
+#     async def __aexit__(self, exc_type, exc, tb):
+#         # report a message
+#         print('>exiting the context manager')
+#         # block for a moment
+#         await asyncio.sleep(0.5)
+#
+#
+# # define a simple coroutine
+# async def main():
+#     # create and use the asynchronous context manager
+#     async with AsyncContextManager() as manager:
+#         # report the result
+#         print(f'within the manager')
+#
+#
+# # start the asyncio program
+# asyncio.run(main())
+########################################################################################################################
 
-    # exit the async context manager
-    async def __aexit__(self, exc_type, exc, tb):
-        # report a message
-        print('>exiting the context manager')
-        # block for a moment
-        await asyncio.sleep(0.5)
+
+"""
+В этом примере мы выполним команду echo для возвращения строки 'Hello World'. Корутина main() вызывает функцию 
+create_subprocess_exec() и приостанавливается на время выполения процесса, экземпляр процесса возвращается,
+корутина продолжает работу и сообщает детали работы процесса. Вывод команды echo отображается в командной строке.
+"""
+
+# example of executing a command as a subprocess with asyncio
 
 
-# define a simple coroutine
+# main coroutine
 async def main():
-    # create and use the asynchronous context manager
-    async with AsyncContextManager() as manager:
-        # report the result
-        print(f'within the manager')
+    # start executing a command in a subprocess
+    process = await asyncio.create_subprocess_exec('echo', 'Hello World')
+    # report the details of the subprocess
+    print(f'subprocess: {process}')
 
 
-# start the asyncio program
+# entry point
 asyncio.run(main())
 ########################################################################################################################
