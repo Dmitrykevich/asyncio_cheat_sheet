@@ -379,13 +379,33 @@ create_subprocess_exec() и приостанавливается на время
 корутина продолжает работу и сообщает детали работы процесса. Вывод команды echo отображается в командной строке.
 """
 
-# example of executing a command as a subprocess with asyncio
+# # example of executing a command as a subprocess with asyncio
+#
+#
+# # main coroutine
+# async def main():
+#     # start executing a command in a subprocess
+#     process = await asyncio.create_subprocess_exec('echo', 'Hello World')
+#     # report the details of the subprocess
+#     print(f'subprocess: {process}')
+#
+#
+# # entry point
+# asyncio.run(main())
+########################################################################################################################
+
+"""
+В этом примере мы выполним команду 'echo' , чтобы вернуть строку.
+Команда echo сообщит предоставленную строку напрямую в стандартный вывод.
+"""
+
+# example of executing a shell command as a subprocess with asyncio
 
 
 # main coroutine
 async def main():
-    # start executing a command in a subprocess
-    process = await asyncio.create_subprocess_exec('echo', 'Hello World')
+    # start executing a shell command in a subprocess
+    process = await asyncio.create_subprocess_shell('echo Hello World')
     # report the details of the subprocess
     print(f'subprocess: {process}')
 
